@@ -20,18 +20,18 @@ Goal: allow Host A and Host B to reach external networks, and ensure replies can
 
 ## Host A Segment
 
-- Host A IP: 152.217.197.2
+- Host A IP: 157.217.197.2
 - Host A mask: 255.255.255.240 (/28)
-- Host A default gateway: 152.217.197.1
-- Router 1 interface R11: 152.217.197.1/28
+- Host A default gateway: 157.217.197.1
+- Router 1 interface R11: 157.217.197.1/28
 
 ### Subnet Calculation
 
 For /28, step is 16 in the last octet.
 
-- Network: 152.217.197.0/28
-- Broadcast: 152.217.197.15
-- Usable range: 152.217.197.1 - 152.217.197.14
+- Network: 157.217.197.0/28
+- Broadcast: 157.217.197.15
+- Usable range: 157.217.197.1 - 157.217.197.14
 
 Result: Host A and R11 are in the same subnet, gateway is valid.
 
@@ -39,20 +39,20 @@ Result: Host A and R11 are in the same subnet, gateway is valid.
 
 ## Host B Segment
 
-- Host B IP: 152.217.197.18
+- Host B IP: 157.217.197.18
 - Host B mask: 255.255.255.240 (/28)
-- Router 1 interface R12: 152.217.197.17/28
-- Host B default gateway should be: 152.217.197.17
+- Router 1 interface R12: 157.217.197.17/28
+- Host B default gateway should be: 157.217.197.17
 
 ### Subnet Calculation
 
 For /28, step is 16 in the last octet.
 
-- Network: 152.217.197.16/28
-- Broadcast: 152.217.197.31
-- Usable range: 152.217.197.17 - 152.217.197.30
+- Network: 157.217.197.16/28
+- Broadcast: 157.217.197.31
+- Usable range: 157.217.197.17 - 157.217.197.30
 
-Result: Host B and R12 are in the same subnet, gateway is valid when set to 152.217.197.17.
+Result: Host B and R12 are in the same subnet, gateway is valid when set to 157.217.197.17.
 
 ---
 
@@ -94,8 +94,8 @@ Result: external next hop 163.199.250.1 is reachable from R22.
 
 ### Host Routes
 
-- Host A: default -> 152.217.197.1
-- Host B: default -> 152.217.197.17
+- Host A: default -> 157.217.197.1
+- Host B: default -> 157.217.197.17
 
 ### Router 1 Route
 
@@ -126,7 +126,7 @@ This is required so replies from outside return to Router 2.
 ### Forward Path (Host A -> Internet)
 
 1. Host A sends packet to external destination
-2. Destination is outside local subnet, so Host A uses gateway 152.217.197.1
+2. Destination is outside local subnet, so Host A uses gateway 157.217.197.1
 3. Router 1 forwards by default to 157.217.197.62 (Router 2)
 4. Router 2 forwards by default to 163.199.250.1
 5. Packet reaches upstream network
@@ -140,7 +140,7 @@ This is required so replies from outside return to Router 2.
 5. Router 1 receives and forwards to Host A subnet
 6. Host A receives reply
 
-The same logic applies to Host B through subnet 152.217.197.16/28.
+The same logic applies to Host B through subnet 157.217.197.16/28.
 
 ---
 
@@ -159,7 +159,7 @@ The same logic applies to Host B through subnet 152.217.197.16/28.
 
 Level 8 works when:
 
-- Host B gateway is set to 152.217.197.17
+- Host B gateway is set to 157.217.197.17
 - Router 1 default route points to 157.217.197.62
 - Router 2 has internal route to 157.217.197.0/26 via 157.217.197.61
 - Router 2 default route points to 163.199.250.1
